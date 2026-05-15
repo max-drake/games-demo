@@ -1,4 +1,12 @@
+/**
+ * floodFill.ts
+ * BFS cluster detection and cluster-pop logic.
+ *
+ * Orphan-bubble removal (gravity) is delegated to gravity.ts.
+ */
+
 import { Cell, getNeighbours } from './grid'
+import { dropOrphanBubbles } from './gravity'
 
 /**
  * Find all cells in the connected cluster of the same colour starting at (col, row).
@@ -37,7 +45,8 @@ export function findCluster(
 
 /**
  * Remove a set of cells from the grid and return the new grid.
- * Also removes any bubbles no longer connected to the ceiling (row 0).
+ * Also removes any bubbles no longer connected to the ceiling (row 0)
+ * by delegating to dropOrphanBubbles() in gravity.ts.
  */
 export function popCluster(
 	grid: Cell[][],
@@ -49,45 +58,6 @@ export function popCluster(
 		next[row][col] = null
 	}
 
-	// Find orphaned bubbles (not connected to ceiling)
-	const connected = findConnectedToCeiling(next)
-	for (let row = 0; row < next.length; row++) {
-		for (let col = 0; col < next[row].length; col++) {
-			if (next[row][col] !== null && !connected.has(`${col},${row}`)) {
-				next[row][col] = null
-			}
-		}
-	}
-
-	return next
-}
-
-/** BFS from all bubbles in row 0; return the set of keys "col,row" that are reachable */
-function findConnectedToCeiling(grid: Cell[][]): Set<string> {
-	const visited = new Set<string>()
-	const queue: Array<{ col: number; row: number }> = []
-
-	// Seed from the top row
-	for (let col = 0; col < grid[0].length; col++) {
-		if (grid[0][col] !== null) {
-			queue.push({ col, row: 0 })
-		}
-	}
-
-	while (queue.length > 0) {
-		const current = queue.shift()!
-		const key = `${current.col},${current.row}`
-		if (visited.has(key)) continue
-		visited.add(key)
-
-		for (const neighbour of getNeighbours(current.col, current.row)) {
-			if (!visited.has(`${neighbour.col},${neighbour.row}`)) {
-				if (grid[neighbour.row][neighbour.col] !== null) {
-					queue.push(neighbour)
-				}
-			}
-		}
-	}
-
-	return visited
+	// Drop any bubbles that are now floating (not connected to ceiling)
+	return dropOrphanBubbles(next)
 }
