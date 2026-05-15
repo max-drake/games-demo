@@ -60,6 +60,24 @@ export function Root() {
 				</Link>
 
 				<Link
+					to="/space-invaders"
+					style={{
+						display: 'block',
+						padding: '14px 24px',
+						background: '#8e44ad',
+						color: '#fff',
+						textDecoration: 'none',
+						borderRadius: '8px',
+						textAlign: 'center',
+						fontSize: '18px',
+						fontWeight: 'bold',
+						letterSpacing: '1px',
+					}}
+				>
+					👾 Space Invaders
+				</Link>
+
+				<Link
 					to={`/${myLocalRoomId}`}
 					style={{
 						display: 'block',

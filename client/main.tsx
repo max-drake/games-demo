@@ -6,6 +6,7 @@ import { Lemmings } from './pages/Lemmings'
 import { Room } from './pages/Room'
 import { Root } from './pages/Root'
 import { Snood } from './pages/Snood'
+import { SpaceInvaders } from './pages/SpaceInvaders'
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
 	{
 		path: '/lemmings',
 		element: <Lemmings />,
+	},
+	{
+		path: '/space-invaders',
+		element: <SpaceInvaders />,
 	},
 	{
 		path: '/:roomId',
