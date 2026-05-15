@@ -78,6 +78,24 @@ export function Root() {
 				</Link>
 
 				<Link
+					to="/mario"
+					style={{
+						display: 'block',
+						padding: '14px 24px',
+						background: '#e80000',
+						color: '#fff',
+						textDecoration: 'none',
+						borderRadius: '8px',
+						textAlign: 'center',
+						fontSize: '18px',
+						fontWeight: 'bold',
+						letterSpacing: '1px',
+					}}
+				>
+					🍄 Super Mario World
+				</Link>
+
+				<Link
 					to={`/${myLocalRoomId}`}
 					style={{
 						display: 'block',
