@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import { Lemmings } from './pages/Lemmings'
+import { Mario } from './pages/Mario'
 import { Room } from './pages/Room'
 import { Root } from './pages/Root'
 import { Snood } from './pages/Snood'
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
 	{
 		path: '/space-invaders',
 		element: <SpaceInvaders />,
+	},
+	{
+		path: '/mario',
+		element: <Mario />,
 	},
 	{
 		path: '/:roomId',
