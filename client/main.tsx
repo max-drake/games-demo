@@ -5,11 +5,16 @@ import './index.css'
 import { Lemmings } from './pages/Lemmings'
 import { Room } from './pages/Room'
 import { Root } from './pages/Root'
+import { Snood } from './pages/Snood'
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <Root />,
+	},
+	{
+		path: '/snood',
+		element: <Snood />,
 	},
 	{
 		path: '/lemmings',
