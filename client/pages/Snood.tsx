@@ -12,7 +12,8 @@ import {
 	getNeighbours,
 	placeBubble,
 } from '../snood/grid'
-import { Projectile, checkCollision, computeVelocity, stepProjectile } from '../snood/physics'
+import { checkCollision } from '../snood/collision'
+import { Projectile, computeVelocity, stepProjectile } from '../snood/physics'
 import { drawScene } from '../snood/renderer'
 
 // ---------------------------------------------------------------------------

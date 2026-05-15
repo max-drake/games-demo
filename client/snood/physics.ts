@@ -1,3 +1,10 @@
+/**
+ * physics.ts
+ * Projectile velocity, wall bouncing, and trajectory-line helpers.
+ *
+ * Hit-detection (projectile-vs-bubble, projectile-vs-wall) lives in collision.ts.
+ */
+
 import { BubbleColor } from './colors'
 import { BUBBLE_RADIUS } from './grid'
 
@@ -51,28 +58,4 @@ export function stepProjectile(proj: Projectile, canvasWidth: number): Projectil
 	}
 
 	return { x, y, vx, vy, color }
-}
-
-/**
- * Check whether a projectile overlaps any occupied grid cell.
- * Returns the hit cell coordinates or null if no collision.
- */
-export function checkCollision(
-	proj: Projectile,
-	grid: (null | unknown)[][],
-	getCellCenter: (col: number, row: number) => { x: number; y: number }
-): { col: number; row: number } | null {
-	const minDist = BUBBLE_RADIUS * 2
-
-	for (let row = 0; row < grid.length; row++) {
-		for (let col = 0; col < grid[row].length; col++) {
-			if (grid[row][col] === null) continue
-			const center = getCellCenter(col, row)
-			const dist = Math.hypot(proj.x - center.x, proj.y - center.y)
-			if (dist < minDist) {
-				return { col, row }
-			}
-		}
-	}
-	return null
 }
